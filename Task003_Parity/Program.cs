@@ -10,4 +10,4 @@ if (number % 2 == 1)
         else
         {
         Console.WriteLine("Четное");
-        }пше 
+        } 
