@@ -4,25 +4,25 @@
 // 12821 -> да
 // 23432 -> да
 
-// Console.WriteLine("Введите число: ");
-// string value = Console.ReadLine();
-// int i = value.Length;
+Console.WriteLine("Введите число: ");
+string value = Console.ReadLine();
+int i = value.Length;
 
-// if (i == 5)
-// {
-//     if (value[0] == value[4] && value[1] == value[3])
-//     {
-//         Console.WriteLine($"{value} - Палиндром");
-//     }
-//     else
-//     {
-//         Console.WriteLine($"{value} - НЕ палиндром");
-//     }
-// }
-// else
-// {
-//     Console.WriteLine($"Число: {value} - не является пятизначным");
-// }
+if (i == 5)
+{
+    if (value[0] == value[4] && value[1] == value[3])
+    {
+        Console.WriteLine($"{value} - Палиндром");
+    }
+    else
+    {
+        Console.WriteLine($"{value} - НЕ палиндром");
+    }
+}
+else
+{
+    Console.WriteLine($"Число: {value} - не является пятизначным");
+}
 
 
 // 2. Напишите программу, которая принимает на вход координаты двух точек 
@@ -44,9 +44,15 @@ double d = Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2-y1), 2) + Math.Pow((z
 Console.WriteLine("Расстояние между точками: " + Math.Round(d,3));
 
 
-
-
 // 3. Напишите программу, которая принимает на вход число (N) 
 // и выдаёт таблицу кубов чисел от 1 до N.
 // 3 -> 1, 8, 27
 // 5 -> 1, 8, 27, 64, 125
+
+Console.WriteLine("Введите число: ");
+int value = Convert.ToInt32(Console.ReadLine());
+
+for (int i=1; i <= value; i++ )
+    {
+        Console.WriteLine(Math.Pow(i,3));
+    }    
