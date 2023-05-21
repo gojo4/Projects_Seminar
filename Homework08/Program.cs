@@ -9,18 +9,83 @@
 // 9 5 3 2
 // 8 4 4 2
 
-Console.WriteLine("Введите количество строк: ");
-int n = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите количество столбцов: ");
-int m = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите количество строк: ");
+// int n = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите количество столбцов: ");
+// int m = Convert.ToInt32(Console.ReadLine());
 
-int[,] arrayM = new int[n, m];
+// int[,] arrayM = new int[n, m];
+
+// GetArray();
+// PrintArray(arrayM);
+// SortArray(arrayM);
+// Console.WriteLine("---------------------");
+// PrintArray(arrayM);
+
+// void GetArray()
+// {
+//     for (int i = 0; i < arrayM.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < arrayM.GetLength(1); j++)
+//         {
+//             arrayM[i, j] = new Random().Next(1, 10);
+//         }
+//     }
+// }
+
+// void SortArray(int[,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             for (int k = 0; k < array.GetLength(1) - 1; k++)
+//             {
+//                 if (array[i, k] < array[i, k + 1])
+//                 {
+//                     int temp = array[i, k + 1];
+//                     array[i, k + 1] = array[i, k];
+//                     array[i, k] = temp;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// void PrintArray(int[,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             Console.Write(array[i, j] + " ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
+
+// Задача 56: Задайте прямоугольный двумерный массив. 
+// Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// 5 2 6 7
+// Программа считает сумму элементов в каждой строке 
+// и выдаёт номер строки с наименьшей суммой элементов: 1 строка
+
+Console.WriteLine("Введите количество строк: ");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите количество столбцов: ");
+int columns = Convert.ToInt32(Console.ReadLine());
+
+int[,] arrayM = new int[rows, columns];
+int minSumRow = int.MaxValue;
+int indexRow = 0;
 
 GetArray();
 PrintArray(arrayM);
-SortArray(arrayM);
-Console.WriteLine("---------------------");
-PrintArray(arrayM);
+SumRows();
 
 void GetArray()
 {
@@ -29,25 +94,6 @@ void GetArray()
         for (int j = 0; j < arrayM.GetLength(1); j++)
         {
             arrayM[i, j] = new Random().Next(1, 10);
-        }
-    }
-}
-
-void SortArray(int[,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            for (int k = 0; k < array.GetLength(1) - 1; k++)
-            {
-                if (array[i, k] < array[i, k + 1])
-                {
-                    int temp = array[i, k + 1];
-                    array[i, k + 1] = array[i, k];
-                    array[i, k] = temp;
-                }
-            }
         }
     }
 }
@@ -64,18 +110,25 @@ void PrintArray(int[,] array)
     }
 }
 
-// Задача 56: Задайте прямоугольный двумерный массив. 
-// Напишите программу, которая будет находить строку с наименьшей суммой элементов.
-// Например, задан массив:
-// 1 4 7 2
-// 5 9 2 3
-// 8 4 2 4
-// 5 2 6 7
-// Программа считает сумму элементов в каждой строке 
-// и выдаёт номер строки с наименьшей суммой элементов: 1 строка
-
-
-
+void SumRows()
+{
+    for (int i = 0; i < arrayM.GetLength(0); i++)
+    {
+        int rowSum = 0;
+        for (int j = 0; j < arrayM.GetLength(1); j++)
+        {
+            rowSum += arrayM[i,j];
+        } 
+        if (rowSum < minSumRow)
+        {
+            minSumRow = rowSum;
+            indexRow = i;
+        }
+        Console.WriteLine($"\nСумма {i} строки - {rowSum}");
+    }
+    Console.WriteLine($"{indexRow} - строка с наименьшей суммой");
+}
+            
 // Задача 58: Задайте две матрицы. Напишите программу, 
 // которая будет находить произведение двух матриц.
 // Например, даны 2 матрицы:
