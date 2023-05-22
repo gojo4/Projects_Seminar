@@ -74,31 +74,105 @@
 // Программа считает сумму элементов в каждой строке 
 // и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 
-Console.WriteLine("Введите количество строк: ");
-int rows = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите количество столбцов: ");
-int columns = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите количество строк: ");
+// int rows = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите количество столбцов: ");
+// int columns = Convert.ToInt32(Console.ReadLine());
 
-int[,] arrayM = new int[rows, columns];
-int minSumRow = int.MaxValue;
-int indexRow = 0;
+// int[,] arrayM = new int[rows, columns];
+// int minSumRow = int.MaxValue;
+// int indexRow = 0;
 
-GetArray();
-PrintArray(arrayM);
-SumRows();
+// GetArray();
+// PrintArray(arrayM);
+// SumRows();
 
-void GetArray()
+// void GetArray()
+// {
+//     for (int i = 0; i < arrayM.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < arrayM.GetLength(1); j++)
+//         {
+//             arrayM[i, j] = new Random().Next(1, 10);
+//         }
+//     }
+// }
+
+// void PrintArray(int[,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             Console.Write(array[i, j] + " ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
+
+// void SumRows()
+// {
+//     for (int i = 0; i < arrayM.GetLength(0); i++)
+//     {
+//         int rowSum = 0;
+//         for (int j = 0; j < arrayM.GetLength(1); j++)
+//         {
+//             rowSum += arrayM[i,j];
+//         } 
+//         if (rowSum < minSumRow)
+//         {
+//             minSumRow = rowSum;
+//             indexRow = i;
+//         }
+//         Console.WriteLine($"\nСумма {i} строки - {rowSum}");
+//     }
+//     Console.WriteLine($"{indexRow} - строка с наименьшей суммой");
+// }
+
+// Задача 58: Задайте две матрицы. Напишите программу, 
+// которая будет находить произведение двух матриц.
+// Например, даны 2 матрицы:
+// 2 4 | 3 4
+// 3 2 | 3 3
+// Результирующая матрица будет:
+// 18 20
+// 15 18
+
+Console.WriteLine("Введите кол-во строк первой матрицы: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите кол-во столбцов первой матрицы и кол-во строк второй: ");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите кол-во столбцов второй матрицы: ");
+int t = Convert.ToInt32(Console.ReadLine());
+
+int[,] matrix1 = new int[n,m];
+int[,] matrix2 = new int[m, t];
+
+int[,] resultMatrix = new int[n, t];
+
+GetMatrix(matrix1);
+Console.WriteLine("Первая матрица: ");
+PrintMatrix(matrix1);
+
+GetMatrix(matrix2);
+Console.WriteLine("Вторая матрица: ");
+PrintMatrix(matrix2);
+MultiplyMatrix(matrix1, matrix2, resultMatrix);
+Console.WriteLine("Результат: ");
+PrintMatrix(resultMatrix);
+
+void GetMatrix(int[,] array)
 {
-    for (int i = 0; i < arrayM.GetLength(0); i++)
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        for (int j = 0; j < arrayM.GetLength(1); j++)
+        for (int j = 0; j < array.GetLength(1); j++)
         {
-            arrayM[i, j] = new Random().Next(1, 10);
+            array[i, j] = new Random().Next(1, 10);
         }
     }
 }
 
-void PrintArray(int[,] array)
+void PrintMatrix(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
@@ -110,37 +184,21 @@ void PrintArray(int[,] array)
     }
 }
 
-void SumRows()
+void MultiplyMatrix(int[,] matrix1, int[,] matrix2, int[,] resultMatrix)
 {
-    for (int i = 0; i < arrayM.GetLength(0); i++)
+    for (int i = 0; i < resultMatrix.GetLength(0); i++)
     {
-        int rowSum = 0;
-        for (int j = 0; j < arrayM.GetLength(1); j++)
+        for (int j = 0; j < resultMatrix.GetLength(1); j++)
         {
-            rowSum += arrayM[i,j];
-        } 
-        if (rowSum < minSumRow)
-        {
-            minSumRow = rowSum;
-            indexRow = i;
+            int sum = 0;
+            for (int k = 0; k < matrix1.GetLength(1); k++)
+            {
+                sum += matrix1[i, k] * matrix2[k, j];
+            }
+            resultMatrix[i, j] = sum;
         }
-        Console.WriteLine($"\nСумма {i} строки - {rowSum}");
     }
-    Console.WriteLine($"{indexRow} - строка с наименьшей суммой");
 }
-            
-// Задача 58: Задайте две матрицы. Напишите программу, 
-// которая будет находить произведение двух матриц.
-// Например, даны 2 матрицы:
-// 2 4 | 3 4
-// 3 2 | 3 3
-// Результирующая матрица будет:
-// 18 20
-// 15 18
-
-
-
-
 // Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. 
 // Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
 // Массив размером 2 x 2 x 2
