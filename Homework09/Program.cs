@@ -22,6 +22,39 @@
 // M = 1; N = 15 -> 120
 // M = 4; N = 8. -> 30
 
+// int m = ReadInt("Введите число M: ");
+// int n = ReadInt("Введтите число N: ");
+
+// int ReadInt(string text)
+// {
+//     Console.Write(text);
+//     return Convert.ToInt32(Console.ReadLine());
+// }
+
+// PrintNumbers(m, n);
+// void PrintNumbers(int m, int n)
+// {
+//     Console.Write(SumValue(m - 1, n));
+// }
+
+// int SumValue(int m, int n)
+// {
+//     int result = m;
+//     if (m == n)
+//         return 0;
+//     else
+//     {
+//         m++;
+//         result = m + SumValue(m, n);
+//         return result;
+//     }
+// }
+
+// Задача 68: Напишите программу вычисления функции Аккермана 
+// с помощью рекурсии. Даны два неотрицательных числа m и n.
+// m = 2, n = 3 -> A(m,n) = 9
+// m = 3, n = 2 -> A(m,n) = 29
+
 int m = ReadInt("Введите число M: ");
 int n = ReadInt("Введтите число N: ");
 
@@ -31,27 +64,22 @@ int ReadInt(string text)
     return Convert.ToInt32(Console.ReadLine());
 }
 
-PrintNumbers(m, n);
-void PrintNumbers(int m, int n)
-{
-    Console.Write(SumValue(m - 1, n));
-}
+int functionAkkerman = A(m, n);
 
-int SumValue(int m, int n)
+Console.Write($"Function Akkerman = {functionAkkerman}");
+
+int A(int m, int n)
 {
-    int result = m;
-    if (m == n)
-        return 0;
+    if (m == 0)
+    {
+        return n + 1;
+    }
+    else if (n == 0)
+    {
+        return A(m - 1, 1);
+    }
     else
     {
-        m++;
-        result = m + SumValue(m, n);
-        return result;
+        return A(m - 1, A(m, n - 1));
     }
 }
-
-// Задача 68: Напишите программу вычисления функции Аккермана 
-// с помощью рекурсии. Даны два неотрицательных числа m и n.
-// m = 2, n = 3 -> A(m,n) = 9
-// m = 3, n = 2 -> A(m,n) = 29
-
